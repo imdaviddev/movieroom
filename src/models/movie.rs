@@ -1,4 +1,4 @@
-use serde::{Serialize, Deserialize};
+use rocket::serde::{Serialize, Deserialize};
 
 #[derive(Serialize, Deserialize)]
 pub struct Movie {

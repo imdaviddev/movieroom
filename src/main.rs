@@ -1,20 +1,15 @@
 #[macro_use] extern crate rocket;
 
 mod routes;
-mod models;
 mod handlers;
+mod models;
 
-#[get("/check_health")]
-fn check_health() -> &'static str {
-    "I'm alive!"
-}
+use routes::movie_routes::{get_movies_route, get_movie_route};
+use routes::config_routes::check_health;
 
 #[launch]
 fn rocket() -> _ {
     rocket::build()
-        .mount("/check_health", routes![check_health])
-        .mount("/api", routes![
-            routes::get_movies_route, 
-            routes::get_movie_route
-        ])
+        .mount("/", routes![check_health])
+        .mount("/api", routes![get_movies_route, get_movie_route])
 }
